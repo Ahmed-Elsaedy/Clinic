@@ -1,0 +1,57 @@
+<ng-container *ngIf="{
+    apiStatus: apiStatus$ | async
+} as state">
+    <div class="container mt-5">
+        <form [formGroup]="_fg" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <div class="col-6">
+                    <legend>Create new appointment</legend>
+                    <div class="mb-3">
+                        <label class="form-label">FirstName*</label>
+                        <input type="text" formControlName="firstName" class="form-control" required />
+                        <div class="text-danger"
+                            *ngIf="_fg.get('firstName')?.touched && _fg.get('firstName')?.hasError('required')">
+                            Field is
+                            required</div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">LastName*</label>
+                        <input type="text" formControlName="lastName" class="form-control" required />
+                        <div class="text-danger"
+                            *ngIf="_fg.get('lastName')?.touched && _fg.get('lastName')?.hasError('required')">
+                            Field is
+                            required</div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Phone Number*</label>
+                        <input type="text" formControlName="phoneNumber" class="form-control" />
+                        <div class="text-danger"
+                            *ngIf="_fg.get('phoneNumber')?.touched && _fg.get('phoneNumber')?.hasError('required')">
+                            Field is
+                            required</div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Date*</label>
+                        <input type="date" formControlName="date" class="form-control" />
+                        <div class="text-danger"
+                            *ngIf="_fg.get('date')?.touched && _fg.get('date')?.hasError('required')">
+                            Field is
+                            required</div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Notes*</label>
+                        <textarea type="number" formControlName="notes" class="form-control"></textarea>
+                        <div class="text-danger"
+                            *ngIf="_fg.get('notes')?.touched && _fg.get('notes')?.hasError('required')">Field is
+                            required
+                        </div>
+                    </div>
+                    <div class="alert alert-danger mt-3" role="alert" *ngIf="state.apiStatus?.apiResponseMessage">
+                        {{state.apiStatus?.apiResponseMessage}}
+                    </div>
+                    <input type="submit" class="btn btn-dark" value="Create" />
+                </div>
+            </div>
+        </form>
+    </div>
+</ng-container>

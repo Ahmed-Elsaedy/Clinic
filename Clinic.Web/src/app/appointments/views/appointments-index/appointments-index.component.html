@@ -1,0 +1,22 @@
+<div class="container mt-5">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Patient Name</th>
+        <th scope="col">Phone</th>
+        <th scope="col">Date</th>
+        <th scope="col">Note</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let appointment of appointments$ | async">
+        <th scope="row">{{appointment.id}}</th>
+        <td>{{appointment.firstName}} {{appointment.lastName}}</td>
+        <td>{{appointment.phoneNumber}}</td>
+        <td>{{appointment.date}}</td>
+        <td>{{appointment.notes}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
